@@ -4,12 +4,13 @@ pipeline {
     tools {nodejs "node"}
 
     stages {
-        stage('Build') { 
+        stage('Build') {
             steps {
-                sh 'npm install' 
-                sh '<<Build Command>>'
+                nodejs(nodeJSInstallationName: 'Node 18.1.0', configId: '<config-file-provider-id>') {
+                    sh 'npm config ls'
+                }
             }
-        }
+        }   
 
         stage('Test'){
             steps {
